@@ -1,2 +1,14 @@
-package com.minsait.banco.message;public class MensagemDeSucesso {
+package com.minsait.banco.message;
+
+public class MensagemDeSucesso {
+    private String mensagem;
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
+
 }

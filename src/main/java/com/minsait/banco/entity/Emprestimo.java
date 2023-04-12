@@ -1,2 +1,105 @@
-package com.minsait.banco.entity;public class Emprestimo {
+package com.minsait.banco.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.minsait.banco.types.RelacionamentoEnum;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "emprestimo")
+public class Emprestimo implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "cpf_cliente")
+    private String cpfCliente;
+    @Column(name = "valor_inicial")
+    private BigDecimal valorInicial;
+    @Column(name = "valor_final")
+    private BigDecimal valorFinal;
+    @Column(name = "relacionameto")
+    private RelacionamentoEnum relacionamento;
+
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "data_inicial")
+    private Date dataInicial;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "data_final")
+    private Date dataFinal;
+
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_cpf")
+    @JsonBackReference
+    private Cliente cliente;
+
+
+    public BigDecimal getValorFinal() {
+        return valorFinal;
+    }
+    public void setValorFinal() {
+        if (this.valorFinal != null) {
+            this.valorFinal = this.relacionamento.calculaValorFinal(this);
+        }
+    }
+
+    public String getCpfCliente() {
+        return cpfCliente;
+    }
+
+    public void setCpfCliente(String cpfCliente) {
+        this.cpfCliente = cpfCliente;
+    }
+
+    public BigDecimal getValorInicial() {
+        return valorInicial;
+    }
+
+    public void setValorInicial(BigDecimal valorInicial) {
+        this.valorInicial = valorInicial;
+    }
+
+    public RelacionamentoEnum getRelacionamento() {
+        return relacionamento;
+    }
+
+    public void setRelacionamento(RelacionamentoEnum relacionamento) {
+        this.relacionamento = relacionamento;
+    }
+
+    public Date getDataInicial() {
+        return dataInicial;
+    }
+
+    public void setDataInicial(Date dataInicial) {
+        this.dataInicial = dataInicial;
+    }
+
+    public Date getDataFinal() {
+        return dataFinal;
+    }
+
+    public void setDataFinal(Date dataFinal) {
+        this.dataFinal = dataFinal;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

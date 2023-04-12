@@ -1,2 +1,10 @@
-package com.minsait.banco.repository;public interface EmprestimoRepository {
+package com.minsait.banco.repository;
+
+import com.minsait.banco.entity.Emprestimo;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
+
 }
