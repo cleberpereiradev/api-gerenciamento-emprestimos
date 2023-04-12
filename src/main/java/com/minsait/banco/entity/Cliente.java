@@ -2,12 +2,23 @@ package com.minsait.banco.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+
+/**
+ * Esta classe define os atributos de um cliente
+ * Uso de anotações para redução de código
+ *
+ * Para Ativar ou desativar a validação do atributo cpf, através da anotação @CPF
+ *
+ @author Cleber Pereira
+ @version 0.1
+ */
 
 @Entity(name = "cliente")
 @Table(name = "cliente")
@@ -26,6 +37,7 @@ public class Cliente implements Serializable {
     private String telefone;
 
     @NotNull(message = "Campo rendimento mensal não pode estar vazio!")
+    @Min(0)
     @Column(name = "rendimento_mensal")
     private BigDecimal rendimentoMensal;
 

@@ -11,6 +11,17 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Esta classe define os atributos de um empréstimo
+ * Está diretamente associada à classe Cliente.java, através da anotação @ManyToOne
+ *
+ * Uso de anotações para redução de código e criação de padrão de data
+ *
+ *
+ @author Cleber Pereira
+ @version 0.1
+ */
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

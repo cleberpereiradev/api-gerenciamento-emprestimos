@@ -3,6 +3,7 @@ package com.minsait.banco.service;
 import com.minsait.banco.entity.Cliente;
 import com.minsait.banco.entity.Emprestimo;
 import com.minsait.banco.exception.EmprestimoNaoEncontradoException;
+import com.minsait.banco.message.MensagemDeSucesso;
 import com.minsait.banco.repository.ClienteRepository;
 import com.minsait.banco.repository.EmprestimoRepository;
 import org.hibernate.exception.GenericJDBCException;
@@ -63,9 +64,12 @@ public class EmprestimoService {
         return new ResponseEntity<>("Valor máximo ultrapassado!",HttpStatus.BAD_REQUEST);
     }
 
-    public void deletaEmprestimoPorId(long id) throws EmprestimoNaoEncontradoException{
+    public MensagemDeSucesso deletaEmprestimoPorId(long id) throws EmprestimoNaoEncontradoException{
        if(emprestimoRepository.existsById(id)){
            this.emprestimoRepository.deleteById(id);
+           MensagemDeSucesso msg = new MensagemDeSucesso();
+           msg.setMensagem("Empréstimo deletado com sucesso!");
+           return msg;
        }
        throw new EmprestimoNaoEncontradoException(id);
     }
@@ -77,21 +81,5 @@ public class EmprestimoService {
         }
         return valorTotalEmprestimos;
     }
-
-//    public boolean verificaSePodeEmprestar(Emprestimo emprestimo){
-//        Cliente cliente = this.clienteRepository.findById(emprestimo.getCpfCliente()).get();
-//        boolean podeEmprestar = false;
-//        BigDecimal fatorMultiplicador = new BigDecimal(10);
-//        BigDecimal valorTotalRendimentos = cliente.getRendimentoMensal().multiply(fatorMultiplicador);
-//        BigDecimal valorTotalEmprestimos = new BigDecimal("0");
-//        for(Emprestimo emp : emprestimoRepository.findAll()){
-//            valorTotalEmprestimos = emp.getValorInicial().add(emp.getValorFinal());
-//        }
-//        if(valorTotalRendimentos.compareTo(valorTotalEmprestimos) <= 0){
-//            return podeEmprestar = true;
-//        }else {
-//            return false;
-//        }
-//    }
 
 }

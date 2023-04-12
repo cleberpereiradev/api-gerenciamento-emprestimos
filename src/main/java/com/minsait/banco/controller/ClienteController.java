@@ -69,8 +69,8 @@ public class ClienteController {
     }
 
     @DeleteMapping(value = "/clientes/{cpf}")
-    public ResponseEntity deletaClientePorCpf(@PathVariable String cpf) throws ClienteNaoEncontradoException {
-        return this.clienteService.deletaClientePorCpf(cpf);
+    public void deletaClientePorCpf(@PathVariable String cpf) throws ClienteNaoEncontradoException {
+        this.clienteService.deletaClientePorCpf(cpf);
     }
 
 

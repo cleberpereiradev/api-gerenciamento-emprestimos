@@ -4,6 +4,15 @@ import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
 
+/**
+ * Esta classe define os atributos de um endereço
+ * Uso de anotação para associar a classe Endereço à um cliente
+ * Neste caso, quando a classe é instanciada, a classe endereço deve ser instanciada em conjunto.
+ * No Banco de dados, compõe a mesma entidade de cliente
+ *
+ @author Cleber Pereira
+ @version 0.1
+ */
 @Embeddable
 public class Endereco implements Serializable {
 
@@ -14,7 +23,7 @@ public class Endereco implements Serializable {
 
 
 
-    public Endereco(Long id, Cliente cliente, String rua, int numero, String cep) {
+    public Endereco( String rua, int numero, String cep) {
         super();
         this.rua = rua;
         this.numero = numero;

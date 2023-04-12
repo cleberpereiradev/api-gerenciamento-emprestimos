@@ -2,6 +2,7 @@ package com.minsait.banco.service;
 
 import com.minsait.banco.entity.Cliente;
 import com.minsait.banco.exception.ClienteNaoEncontradoException;
+import com.minsait.banco.message.MensagemDeSucesso;
 import com.minsait.banco.repository.ClienteRepository;
 import org.hibernate.exception.GenericJDBCException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +45,10 @@ public class ClienteService {
                 return new ResponseEntity<>(this.clienteRepository.save(cliente), HttpStatus.CREATED);
             } catch (JpaSystemException | GenericJDBCException | HttpMessageNotReadableException | DataIntegrityViolationException e){
                 e.printStackTrace();
-                return new ResponseEntity<String>("Dados inválidos para cadastro de cliente no sistema!", HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>("Dados inválidos para cadastro de cliente no sistema!", HttpStatus.BAD_REQUEST);
             }
         } else {
-            return new ResponseEntity<String>("Cliente já possui cadastro!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Cliente já possui cadastro!", HttpStatus.BAD_REQUEST);
         }
 
     }
@@ -59,7 +60,6 @@ public class ClienteService {
 
             cliente.setCpf(cpf);
 
-            // colocar isso em um método e reusar
             if (cliente.getNome().equals(null)) {
                 cliente.setNome(clienteASerAlterado.getNome());
             }
@@ -80,33 +80,13 @@ public class ClienteService {
 
     }
 
-//
-//    public ResponseEntity<?> atualizarCliente(String cpf, Cliente cliente) {
-//        try {
-//            return clienteRepository.findById(cpf).map(record -> {
-//                record.setCpf(cliente.getCpf());
-//                record.setNome(cliente.getNome());
-//                record.setTelefone(cliente.getTelefone());
-//                record.setRendimentoMensal(cliente.getRendimentoMensal());
-//
-//                Cliente clienteAtualizado = clienteRepository.save(record);
-//
-//                return new ResponseEntity(clienteAtualizado, HttpStatus.OK);
-//            }).orElse(ResponseEntity.badRequest()
-//                    .body("Não foi possível atualizar o usuário. Por favor, tente novamente."));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity("Erro não identificado", HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//
-//    }
-
-
-
     @Transactional
-    public ResponseEntity deletaClientePorCpf(String cpf) throws ClienteNaoEncontradoException {
+    public MensagemDeSucesso deletaClientePorCpf(String cpf) throws ClienteNaoEncontradoException {
         if(clienteRepository.existsById(cpf)){
             this.clienteRepository.deleteById(cpf);
+            MensagemDeSucesso msg = new MensagemDeSucesso();
+            msg.setMensagem("Cliente deletado com sucesso!");
+            return msg;
         }
         throw new ClienteNaoEncontradoException(cpf);
     }
