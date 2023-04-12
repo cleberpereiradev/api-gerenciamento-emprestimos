@@ -29,6 +29,32 @@ Para o desenvolvimento do projeto, foram seguidas algumas etapas, estas são:
 
   - Criação da documentação da API, utilizando swagger e javadoc
 
+
+## Tecnologias
+
+  - ``JAVA 17 - Linguagem de programação (JDK 1.8).``
+  - ``Spring - Framework MVC.``
+  - ``Apache Maven 3.8.6 - Gerenciador de dependências.``
+  - ``IntelliJ - IDE para desenvolvimento.``
+  - ``H2 Database - Banco de dados relacional em memória.``
+  - ``Swagger 3.0.0 - Documentação de APIs REST.``
+
+  Dependências do projeto disponíveis no [pom.xml](https://github.com/cleberpereiradev/api-gerenciamento-emprestimos/blob/master/pom.xml)
+  
+## Banco de dados
+
+
+  Para acessar o banco de dados H2:
+  
+  ### http://localhost:8080/h2-console
+  
+  |Entrada|Valor|
+  |:-------:|:-----:|
+  |Driver class|org.h2.Driver|
+  |JDBC URL|jdbc:h2:mem:banco|
+  |Username|cleber|
+  |Password|em branco|
+
   
 
 ## Endpoints
@@ -55,25 +81,6 @@ As endpoints disponíveis para consulta e testes são:
   | DELETE:    |  "/api/v1/banco/clientes/:cpf/:id"                |   Remove o empréstimo do cliente com o cpf requisitado, referente ao id do empréstimo  |
 
 
-  - ``JAVA 17 - Linguagem de programação (JDK 1.8).``
-  - ``Spring - Framework MVC.``
-  - ``Apache Maven 3.8.6 - Gerenciador de dependências.``
-  - ``IntelliJ - IDE para desenvolvimento.``
-  - ``H2 Database - Banco de dados relacional em memória.``
-  - ``Swagger 3.0.0 - Documentação de APIs REST.``
-
-  Dependências do projeto disponíveis no [pom.xml](https://github.com/cleberpereiradev/api-gerenciamento-emprestimos/blob/master/pom.xml)
-  
-  
-  Para acessar o banco de dados H2:
-  
-  ### http://localhost:8080/h2-console
-  
-  |Entrada|Valor|
-  |:-------:|:-----:|
-  |Driver class|org.h2.Driver|
-  |JDBC URL|jdbc:h2:mem:banco|
-  |Username|cleber|
-  |Password|em branco|
+ 
   
   
