@@ -2,8 +2,9 @@ package com.minsait.banco.service;
 
 import com.minsait.banco.entity.Cliente;
 import com.minsait.banco.exception.ClienteNaoEncontradoException;
-import com.minsait.banco.message.MensagemDeSucesso;
 import com.minsait.banco.repository.ClienteRepository;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.hibernate.exception.GenericJDBCException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -13,8 +14,6 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 
-import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,12 +80,9 @@ public class ClienteService {
     }
 
     @Transactional
-    public MensagemDeSucesso deletaClientePorCpf(String cpf) throws ClienteNaoEncontradoException {
+    public void deletaClientePorCpf(String cpf) throws ClienteNaoEncontradoException {
         if(clienteRepository.existsById(cpf)){
             this.clienteRepository.deleteById(cpf);
-            MensagemDeSucesso msg = new MensagemDeSucesso();
-            msg.setMensagem("Cliente deletado com sucesso!");
-            return msg;
         }
         throw new ClienteNaoEncontradoException(cpf);
     }

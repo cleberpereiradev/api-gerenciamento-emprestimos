@@ -1,6 +1,7 @@
 package com.minsait.banco.entity;
 
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 
@@ -15,9 +16,11 @@ import java.io.Serializable;
  */
 @Embeddable
 public class Endereco implements Serializable {
-
+    @NotBlank
     private String rua;
+
     private int numero;
+    @NotBlank
     private String cep;
 
 

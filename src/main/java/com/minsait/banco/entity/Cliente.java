@@ -2,9 +2,11 @@ package com.minsait.banco.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -26,6 +28,7 @@ public class Cliente implements Serializable {
 
 
     @Id
+    @CPF
     private String cpf;
 
     @NotBlank(message = "Campo nome não pode estar vazio!")
@@ -42,6 +45,7 @@ public class Cliente implements Serializable {
     private BigDecimal rendimentoMensal;
 
     @NotNull(message = "Atributos de endereço não podem estar vazios!")
+    @Valid
     @Embedded
     private Endereco endereco;
 

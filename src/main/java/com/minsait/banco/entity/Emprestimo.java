@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.minsait.banco.types.RelacionamentoEnum;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -33,19 +37,26 @@ public class Emprestimo implements Serializable {
     private Long id;
 
     @Column(name = "cpf_cliente")
+
     private String cpfCliente;
+    @NotNull(message = "Campo valor final não pode ser nulo!")
+    @Min(0)
     @Column(name = "valor_inicial")
     private BigDecimal valorInicial;
     @Column(name = "valor_final")
+    @NotNull(message = "Campo valor final não pode ser nulo!")
+    @Min(0)
     private BigDecimal valorFinal;
+    @NotNull(message = "Campo de relacionamento é obrigatório!")
     @Column(name = "relacionameto")
     private RelacionamentoEnum relacionamento;
 
-
+    @NotNull(message = "Valor obrigatório")
     @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name = "data_inicial")
     private Date dataInicial;
 
+    @NotNull(message = "Valor obrigatório")
     @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name = "data_final")
     private Date dataFinal;
