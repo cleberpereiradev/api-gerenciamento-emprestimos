@@ -21,7 +21,7 @@ Para o desenvolvimento do projeto, foram seguidas algumas etapas, estas são:
 
   - Desenvolvimento do sistema CRUD de empréstimos ( Associação direta com clientes, com os verbos POST, GET e DELETE)
 
-  - Aplicação das regras de negócio, seguindo os requisitos descritos no documento de [Requisitos]()
+  - Aplicação das regras de negócio, seguindo os requisitos descritos no documento de [Requisitos](https://github.com/cleberpereiradev/api-gerenciamento-emprestimos/blob/master/testejava.pdf)
 
   - Finalização das validações necessárias
 
